@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/api/person/v1")
 class PersonController {
 
 
