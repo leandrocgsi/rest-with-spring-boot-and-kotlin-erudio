@@ -44,7 +44,7 @@ class MockPerson {
         person.address = "Address Test$number"
         person.firstName = "First Name Test$number"
         person.gender = if (number % 2 == 0) "Male" else "Female"
-        person.id = number.toLong()
+        person.key = number.toLong()
         person.lastName = "Last Name Test$number"
         return person
     }
