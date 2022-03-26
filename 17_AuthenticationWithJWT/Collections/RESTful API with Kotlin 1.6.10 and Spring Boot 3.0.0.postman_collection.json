@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ac5b9246-f9e5-4797-b1f6-a2b11f0278cc",
+		"_postman_id": "8d7cc522-facf-41b1-933f-5005ab94da18",
 		"name": "RESTful API with Kotlin 1.6.10 and Spring Boot 3.0.0",
 		"description": "Some description about your API.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -17,6 +17,11 @@
 							{
 								"key": "Accept",
 								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
 							}
 						],
 						"url": {
@@ -221,6 +226,11 @@
 							{
 								"key": "Accept",
 								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
 							}
 						],
 						"body": {
@@ -488,11 +498,16 @@
 							{
 								"key": "Accept",
 								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\": -33301818,\n  \"firstName\": \"culpa\",\n  \"lastName\": \"voluptate ipsum et\",\n  \"address\": \"proident exercitation deserunt\",\n  \"gender\": \"in proident\",\n  \"_links\": {\n    \"ex_a\": {\n      \"href\": \"nostrud eu minim pariatur reprehen\",\n      \"hreflang\": \"Ut ex sit deserunt\",\n      \"title\": \"reprehenderit eiusmod dolore velit\",\n      \"type\": \"sit velit ea consectetur\",\n      \"deprecation\": \"et ex\",\n      \"profile\": \"minim\",\n      \"name\": \"ad eiusmod laboris\",\n      \"templated\": false\n    },\n    \"dolore_2_7\": {\n      \"href\": \"Ut ut pariatur anim\",\n      \"hreflang\": \"sint\",\n      \"title\": \"in et\",\n      \"type\": \"esse labore exercitation\",\n      \"deprecation\": \"est veniam consequat dolor\",\n      \"profile\": \"anim incididunt laborum cupidatat\",\n      \"name\": \"officia\",\n      \"templated\": true\n    },\n    \"fugiat_d42\": {\n      \"href\": \"sint ut cillum qui incididunt\",\n      \"hreflang\": \"Excepteur mollit culpa minim\",\n      \"title\": \"dolore dolor\",\n      \"type\": \"enim occaecat\",\n      \"deprecation\": \"in commodo\",\n      \"profile\": \"dolore esse\",\n      \"name\": \"deserunt a\",\n      \"templated\": true\n    }\n  }\n}",
+							"raw": "{\n  \"firstName\": \"Carrie\",\n  \"lastName\": \"Fisher\",\n  \"address\": \"Los Angeles - California - USA\",\n  \"gender\": \"Female\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -675,10 +690,15 @@
 							{
 								"key": "Accept",
 								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/api/person/v1/:id",
+							"raw": "{{baseUrl}}/api/person/v1/7",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -686,14 +706,7 @@
 								"api",
 								"person",
 								"v1",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "95621727",
-									"description": "(Required) "
-								}
+								"7"
 							]
 						},
 						"description": "Finds a Person"
@@ -931,6 +944,11 @@
 							{
 								"key": "Accept",
 								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
 							}
 						],
 						"url": {
@@ -1155,6 +1173,11 @@
 							{
 								"key": "Accept",
 								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
 							}
 						],
 						"url": {
@@ -1359,6 +1382,11 @@
 							{
 								"key": "Accept",
 								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
 							}
 						],
 						"body": {
@@ -1626,6 +1654,11 @@
 							{
 								"key": "Accept",
 								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
 							}
 						],
 						"body": {
@@ -1813,6 +1846,11 @@
 							{
 								"key": "Accept",
 								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
 							}
 						],
 						"url": {
@@ -2069,6 +2107,11 @@
 							{
 								"key": "Accept",
 								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
 							}
 						],
 						"url": {
@@ -2277,6 +2320,155 @@
 							],
 							"cookie": [],
 							"body": "{}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Authenticates an user and return a token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(responseCode.code >= 200 && responseCode.code <= 299) {\r",
+									"    var jsonData = JSON.parse(responseBody)\r",
+									"\r",
+									"    postman.setEnvironmentVariable(\"accessToken\", jsonData.accessToken);\r",
+									"    postman.setEnvironmentVariable(\"refreshToken\", jsonData.refreshToken);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"{{username}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/signin",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"{{username}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/signin",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"signin"
+									]
+								}
+							},
+							"_postman_previewlanguage": "",
+							"header": "",
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Refresh token for authenticated user and returns a token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(responseCode.code >= 200 && responseCode.code <= 299) {\r",
+									"    var jsonData = JSON.parse(responseBody)\r",
+									"\r",
+									"    postman.setEnvironmentVariable(\"accessToken\", jsonData.accessToken);\r",
+									"    postman.setEnvironmentVariable(\"refreshToken\", jsonData.refreshToken);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/auth/refresh/{{username}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"refresh",
+								"{{username}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{refreshToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/auth/refresh/{{username}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"refresh",
+										"{{username}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": "",
+							"header": "",
+							"cookie": [],
+							"body": ""
 						}
 					]
 				}

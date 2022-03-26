@@ -1,6 +1,5 @@
 package br.com.erudio.security.jwt
 
-import antlr.Token
 import br.com.erudio.data.vo.v1.TokenVO
 import br.com.erudio.exceptions.InvalidJwtAuthenticationException
 import com.auth0.jwt.JWT
@@ -8,7 +7,6 @@ import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.algorithms.Algorithm
 import com.auth0.jwt.interfaces.DecodedJWT
 import jakarta.annotation.PostConstruct
-import jakarta.servlet.http.HttpServlet
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -53,6 +51,16 @@ class JwtTokenProvider {
             created = now,
             expiration = validity
         )
+    }
+
+    fun refreshToken(refreshToken: String) : TokenVO {
+        var token: String = ""
+        if(refreshToken.contains("Bearer ")) token = refreshToken.substring("Bearer ".length)
+        val verifier: JWTVerifier = JWT.require(algorithm).build()
+        var decodedJWT: DecodedJWT = verifier.verify(token)
+        val username: String = decodedJWT.subject
+        val roles: List<String> = decodedJWT.getClaim("roles").asList(String::class.java)
+        return createAccessToken(username, roles)
     }
 
     private fun getAccessToken(username: String, roles: List<String?>, now: Date, validity: Date): String {
