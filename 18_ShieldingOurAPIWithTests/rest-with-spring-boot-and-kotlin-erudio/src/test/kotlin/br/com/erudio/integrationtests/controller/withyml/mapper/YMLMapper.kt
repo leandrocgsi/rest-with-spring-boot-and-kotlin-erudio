@@ -1,17 +1,15 @@
 package br.com.erudio.integrationtests.controller.withyml.mapper
 
-import br.com.erudio.services.AuthService
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.JsonMappingException
 import com.fasterxml.jackson.databind.type.TypeFactory
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
-import com.fasterxml.jackson.databind.ObjectMapper as JacksonObjectMapper
-
 import io.restassured.mapper.ObjectMapper
 import io.restassured.mapper.ObjectMapperDeserializationContext
 import io.restassured.mapper.ObjectMapperSerializationContext
 import org.testcontainers.shaded.com.fasterxml.jackson.core.JsonProcessingException
 import java.util.logging.Logger
+import com.fasterxml.jackson.databind.ObjectMapper as JacksonObjectMapper
 
 class YMLMapper : ObjectMapper{
 
