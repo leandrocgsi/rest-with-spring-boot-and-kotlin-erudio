@@ -131,7 +131,6 @@ class PersonControllerJsonTest : AbstractIntegrationTest() {
         assertEquals(true, item.enabled)
     }
 
-
     @Test
     @Order(3)
     fun testDisablePersonById() {
@@ -281,5 +280,4 @@ class PersonControllerJsonTest : AbstractIntegrationTest() {
         person.gender = "Male"
         person.enabled = true
     }
-
 }
