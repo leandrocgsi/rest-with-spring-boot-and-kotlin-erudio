@@ -66,6 +66,46 @@ class PersonController {
         return ResponseEntity.ok(service.findAll(pageable))
     }
 
+    @GetMapping(value = ["/findPersonByName/{firstName}"], produces = [MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML])
+    @Operation(summary = "Finds People by Name", description = "Finds all People",
+        tags = ["People"],
+        responses = [
+            ApiResponse(
+                description = "Success",
+                responseCode = "200",
+                content = [
+                    Content(array = ArraySchema(schema = Schema(implementation = PersonVO::class)))
+                ]
+            ),
+            ApiResponse(description = "No Content", responseCode = "204", content = [
+                Content(schema = Schema(implementation = Unit::class))
+            ]),
+            ApiResponse(description = "Bad Request", responseCode = "400", content = [
+                Content(schema = Schema(implementation = Unit::class))
+            ]),
+            ApiResponse(description = "Unauthorized", responseCode = "401", content = [
+                Content(schema = Schema(implementation = Unit::class))
+            ]),
+            ApiResponse(description = "Not Found", responseCode = "404", content = [
+                Content(schema = Schema(implementation = Unit::class))
+            ]),
+            ApiResponse(description = "Internal Error", responseCode = "500", content = [
+                Content(schema = Schema(implementation = Unit::class))
+            ]),
+        ]
+    )
+    fun findPersonByName(
+                @PathVariable(value = "firstName") firstName: String,
+                @RequestParam(value = "page", defaultValue = "0") page: Int,
+                @RequestParam(value = "size", defaultValue = "12") size: Int,
+                @RequestParam(value = "direction", defaultValue = "asc") direction: String
+    ): ResponseEntity<PagedModel<EntityModel<PersonVO>>> {
+        val sortDirection: Sort.Direction =
+            if("desc".equals(direction, ignoreCase = true)) Sort.Direction.DESC else Sort.Direction.ASC
+        val pageable: Pageable = PageRequest.of(page, size, Sort.by(sortDirection, "firstName"))
+        return ResponseEntity.ok(service.findPersonByName(firstName, pageable))
+    }
+
     @CrossOrigin(origins = ["http://localhost:8080"])
     @GetMapping(value = ["/{id}"],
                     produces = [MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML])

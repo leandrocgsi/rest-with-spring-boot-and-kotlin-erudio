@@ -16,4 +16,4 @@ data class BookVO (
     var launchDate: Date? = null,
     var price: Double = 0.0,
     var title: String = ""
-) : RepresentationModel<PersonVO>()
+) : RepresentationModel<BookVO>()
