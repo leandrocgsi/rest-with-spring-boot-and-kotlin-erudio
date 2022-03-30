@@ -212,6 +212,10 @@ class PersonControllerXmlTest : AbstractIntegrationTest() {
         val content = given()
             .spec(specification)
             .contentType(TestConfigs.CONTENT_TYPE_XML)
+            .queryParams(
+                "page", 3,
+                "size",12,
+                "direction", "asc")
             .`when`()
             .get()
             .then()
@@ -230,11 +234,11 @@ class PersonControllerXmlTest : AbstractIntegrationTest() {
         assertNotNull(item1.lastName)
         assertNotNull(item1.address)
         assertNotNull(item1.gender)
-        assertEquals("Ayrton", item1.firstName)
-        assertEquals("Senna", item1.lastName)
-        assertEquals("São Paulo", item1.address)
+        assertEquals("Allin", item1.firstName)
+        assertEquals("Otridge", item1.lastName)
+        assertEquals("09846 Independence Center", item1.address)
         assertEquals("Male", item1.gender)
-        assertEquals(true, item1.enabled)
+        assertEquals(false, item1.enabled)
 
         val item2 = people[6]
 
@@ -243,11 +247,11 @@ class PersonControllerXmlTest : AbstractIntegrationTest() {
         assertNotNull(item2.lastName)
         assertNotNull(item2.address)
         assertNotNull(item2.gender)
-        assertEquals("Nikola", item2.firstName)
-        assertEquals("Tesla", item2.lastName)
-        assertEquals("Smiljan - Croatia", item2.address)
-        assertEquals("Male", item2.gender)
-        assertEquals(true, item2.enabled)
+        assertEquals("Alvera", item2.firstName)
+        assertEquals("MacMillan", item2.lastName)
+        assertEquals("59929 Loeprich Place", item2.address)
+        assertEquals("Female", item2.gender)
+        assertEquals(false, item2.enabled)
     }
 
     @Test
