@@ -6,6 +6,7 @@ import br.com.erudio.integrationtests.testcontainers.AbstractIntegrationTest
 import br.com.erudio.integrationtests.vo.AccountCredentialsVO
 import br.com.erudio.integrationtests.vo.PersonVO
 import br.com.erudio.integrationtests.vo.TokenVO
+import br.com.erudio.integrationtests.vo.wrappers.WrapperPersonVO
 import io.restassured.RestAssured
 import io.restassured.RestAssured.given
 import io.restassured.builder.RequestSpecBuilder
@@ -237,7 +238,7 @@ class PersonControllerYmlTest : AbstractIntegrationTest() {
     @Test
     @Order(6)
     fun testFindAll() {
-        val people = given()
+        val wrapper = given()
             .config(
                 RestAssuredConfig
                     .config()
@@ -254,11 +255,13 @@ class PersonControllerYmlTest : AbstractIntegrationTest() {
             .statusCode(200)
             .extract()
             .body()
-            .`as`(Array<PersonVO>::class.java, objectMapper)
+            .`as`(WrapperPersonVO::class.java, objectMapper)
 
-        val item1 = people[0]
+        val people = wrapper.embedded!!.persons
 
-        assertNotNull(item1.id)
+        val item1 = people?.get(0)
+
+        assertNotNull(item1!!.id)
         assertNotNull(item1.firstName)
         assertNotNull(item1.lastName)
         assertNotNull(item1.address)
