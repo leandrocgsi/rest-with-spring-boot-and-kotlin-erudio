@@ -290,9 +290,42 @@ class PersonControllerYmlTest : AbstractIntegrationTest() {
         assertEquals(false, item2.enabled)
     }
 
-
     @Test
     @Order(7)
+    fun testFindPersonByName() {
+        val wrapper = given()
+            .spec(specification)
+            .contentType(TestConfigs.CONTENT_TYPE_JSON)
+            .pathParam("firstName", "Ayr")
+            .queryParams(
+                "page", 0,
+                "size", 12,
+                "direction", "asc")
+            .`when`()["findPersonByName/{firstName}"]
+            .then()
+            .statusCode(200)
+            .extract()
+            .body()
+            .`as`(WrapperPersonVO::class.java, objectMapper)
+
+        val people = wrapper.embedded!!.persons
+
+        val item1 = people?.get(0)
+
+        assertNotNull(item1!!.id)
+        assertNotNull(item1.firstName)
+        assertNotNull(item1.lastName)
+        assertNotNull(item1.address)
+        assertNotNull(item1.gender)
+        assertEquals("Ayrton", item1.firstName)
+        assertEquals("Senna", item1.lastName)
+        assertEquals("São Paulo", item1.address)
+        assertEquals("Male", item1.gender)
+        assertEquals(true, item1.enabled)
+    }
+
+    @Test
+    @Order(8)
     fun testFindAllWithoutToken() {
 
         val specificationWithoutToken: RequestSpecification = RequestSpecBuilder()
