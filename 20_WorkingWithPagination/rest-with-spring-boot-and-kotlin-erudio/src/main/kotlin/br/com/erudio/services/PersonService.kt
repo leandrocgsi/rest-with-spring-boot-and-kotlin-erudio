@@ -10,6 +10,10 @@ import br.com.erudio.repository.PersonRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PagedResourcesAssembler
+import org.springframework.hateoas.EntityModel
+import org.springframework.hateoas.PagedModel
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -21,16 +25,19 @@ class PersonService {
     @Autowired
     private lateinit var repository: PersonRepository
 
+    @Autowired
+    private lateinit var assembler: PagedResourcesAssembler<PersonVO>
+
     private val logger = Logger.getLogger(PersonService::class.java.name)
 
-    fun findAll(pageable: Pageable): Page<PersonVO> {
+    fun findAll(pageable: Pageable): PagedModel<EntityModel<PersonVO>> {
 
         logger.info("Finding all people!")
 
         val persons = repository.findAll(pageable)
         val vos = persons.map { p -> DozerMapper.parseObject(p, PersonVO::class.java) }
         vos.map { p ->  p.add(linkTo(PersonController::class.java).slash(p.key).withSelfRel())}
-        return vos
+        return assembler.toModel(vos)
     }
 
     fun findById(id: Long): PersonVO {
