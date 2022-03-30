@@ -8,12 +8,10 @@ import br.com.erudio.mapper.DozerMapper
 import br.com.erudio.model.Person
 import br.com.erudio.repository.PersonRepository
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PagedResourcesAssembler
 import org.springframework.hateoas.EntityModel
 import org.springframework.hateoas.PagedModel
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

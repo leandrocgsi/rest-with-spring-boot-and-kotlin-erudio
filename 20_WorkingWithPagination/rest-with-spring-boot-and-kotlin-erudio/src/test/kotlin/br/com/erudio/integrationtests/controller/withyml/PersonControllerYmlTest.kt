@@ -6,8 +6,6 @@ import br.com.erudio.integrationtests.testcontainers.AbstractIntegrationTest
 import br.com.erudio.integrationtests.vo.AccountCredentialsVO
 import br.com.erudio.integrationtests.vo.PersonVO
 import br.com.erudio.integrationtests.vo.TokenVO
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.ObjectMapper
 import io.restassured.RestAssured
 import io.restassured.RestAssured.given
 import io.restassured.builder.RequestSpecBuilder

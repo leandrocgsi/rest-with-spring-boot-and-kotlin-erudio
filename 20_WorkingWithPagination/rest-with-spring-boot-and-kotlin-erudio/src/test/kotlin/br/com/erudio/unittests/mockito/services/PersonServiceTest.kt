@@ -4,17 +4,12 @@ import br.com.erudio.exceptions.RequiredObjectIsNullException
 import br.com.erudio.repository.PersonRepository
 import br.com.erudio.services.PersonService
 import br.com.erudio.unittests.mocks.MockPerson
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.assertNotNull
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.InjectMocks
 import org.mockito.Mock
-
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.jupiter.MockitoExtension

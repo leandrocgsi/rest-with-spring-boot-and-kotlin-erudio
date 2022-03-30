@@ -1,6 +1,6 @@
 package br.com.erudio.exceptions
 
-import java.util.Date
+import java.util.*
 
 class ExceptionResponse (
     val timestamp: Date,

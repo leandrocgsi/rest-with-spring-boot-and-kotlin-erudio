@@ -10,7 +10,7 @@ import io.restassured.config.EncoderConfig
 import io.restassured.config.RestAssuredConfig
 import io.restassured.http.ContentType
 import org.junit.jupiter.api.*
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertNotNull
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)

@@ -6,7 +6,7 @@ import br.com.erudio.integrationtests.vo.AccountCredentialsVO
 import br.com.erudio.integrationtests.vo.TokenVO
 import io.restassured.RestAssured
 import org.junit.jupiter.api.*
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertNotNull
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)

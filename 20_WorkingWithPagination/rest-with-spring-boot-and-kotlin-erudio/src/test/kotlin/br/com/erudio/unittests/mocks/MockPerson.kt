@@ -1,6 +1,5 @@
 package br.com.erudio.unittests.mocks
 
-import java.util.ArrayList
 import br.com.erudio.data.vo.v1.PersonVO
 import br.com.erudio.model.Person
 
