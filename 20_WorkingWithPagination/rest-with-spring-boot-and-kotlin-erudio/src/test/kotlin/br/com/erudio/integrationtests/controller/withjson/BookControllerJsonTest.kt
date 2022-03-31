@@ -206,6 +206,33 @@ class  BookControllerJsonTest : AbstractIntegrationTest() {
         assertEquals(92.0, foundBookFive.price)
     }
 
+    @Test
+    @Order(7)
+    fun testHATEOAS() {
+        val content = given().spec(specification)
+            .contentType(TestConfigs.CONTENT_TYPE_JSON)
+            .queryParams(
+                "page", 0,
+                "size", 12,
+                "direction", "asc")
+            .`when`()
+            .get()
+            .then()
+            .statusCode(200)
+            .extract()
+            .body()
+            .asString()
+
+        assertTrue(content.contains(""""_links":{"self":{"href":"http://localhost:8888/api/book/v1/12"}}}"""))
+        assertTrue(content.contains(""""_links":{"self":{"href":"http://localhost:8888/api/book/v1/3"}}}"""))
+        assertTrue(content.contains(""""_links":{"self":{"href":"http://localhost:8888/api/book/v1/5"}}}"""))
+
+        assertTrue(content.contains(""""first":{"href":"http://localhost:8888/api/book/v1?direction=asc&page=0&size=12&sort=title,asc"}"""))
+        assertTrue(content.contains(""""self":{"href":"http://localhost:8888/api/book/v1?direction=asc&page=0&size=12&sort=title,asc"}"""))
+        assertTrue(content.contains(""""next":{"href":"http://localhost:8888/api/book/v1?direction=asc&page=1&size=12&sort=title,asc"}"""))
+        assertTrue(content.contains(""""last":{"href":"http://localhost:8888/api/book/v1?direction=asc&page=1&size=12&sort=title,asc"}"""))
+    }
+
     private fun mockBook() {
         book.title = "Docker Deep Dive"
         book.author = "Nigel Poulton"
