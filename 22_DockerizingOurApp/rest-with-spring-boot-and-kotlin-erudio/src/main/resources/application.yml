@@ -7,6 +7,8 @@ security:
     token:
       secret-key: 53cr37
       expire-length: 3600000
+server:
+  port: 80
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
