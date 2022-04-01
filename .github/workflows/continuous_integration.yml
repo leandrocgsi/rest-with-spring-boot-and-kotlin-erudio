@@ -15,7 +15,7 @@ jobs:
       uses: docker/login-action@v1
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
-        pasword: ${{ secrets.DOCKER_PASSWORD }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
         
     - name: Setup Java JDK
       uses: actions/setup-java@v2
