@@ -36,11 +36,11 @@ jobs:
         cache: maven
     
     - name: Build Application Jar
-      working-directory: ./23_DeploingOurAppToAWS/rest-with-spring-boot-and-kotlin-erudio
+      working-directory: ./24_ContinuousIntegrationWithAWS/rest-with-spring-boot-and-kotlin-erudio
       run: mvn clean package
     
     - name: Docker Compose Build
-      working-directory: ./23_DeploingOurAppToAWS/
+      working-directory: ./24_ContinuousIntegrationWithAWS/
       run: docker compose build
 
     - name: Tag, and push image to Amazon ECR
