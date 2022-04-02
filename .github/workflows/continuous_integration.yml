@@ -43,7 +43,7 @@ jobs:
       working-directory: ./24_ContinuousIntegrationWithAWS/
       run: docker compose build
 
-    - name: Tag, and push image to Amazon ECR
+    - name: Tag and push image to Amazon ECR
       run: |
         docker tag ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot-erudio:latest ${{ secrets.ECR_IMAGE_REPO_URL }}:${{github.run_id}}
         docker tag ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot-erudio:latest ${{ secrets.ECR_IMAGE_REPO_URL }}:latest
@@ -51,9 +51,30 @@ jobs:
         docker push ${{ secrets.ECR_IMAGE_REPO_URL }}:${{github.run_id}}
         docker push ${{ secrets.ECR_IMAGE_REPO_URL }}:latest
 
+    - name: Download task definition
+      run: |
+        aws ecs describe-task-definition --task-definition ${{ secrets.TASK_DEFINITION_NAME }} --query taskDefinition > task-definition.json
+
+    - name: Fill in the new image ID in the Amazon ECS task definition
+      id: task-def
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: task-definition.json
+        container-name: ${{ secrets.CONTAINER_NAME }}
+        image: ${{ secrets.ECR_IMAGE_REPO_URL }}:latest
+
+    - name: Deploy Amazon ECS task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.task-def.outputs.task-definition }}
+        service: ${{ secrets.SERVICE_NAME }}
+        cluster: ${{ secrets.CLUSTER_NAME }}
+        wait-for-service-stability: true
+
     - name: Push to Docker Hub Container registry
       run: |
         docker tag ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot-erudio:latest ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot-erudio:${{github.run_id}}
         
         docker push ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot-erudio:${{github.run_id}}
         docker push ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot-erudio:latest
+
