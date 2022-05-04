@@ -1,5 +1,5 @@
 -- CREATE DATABASE `rest_with_spring_boot_erudio`;
-USE [rest_with_spring_boot_erudio];
+-- USE [rest_with_spring_boot_erudio];
 
 CREATE TABLE dbo.books (
   [id] int NOT NULL IDENTITY,

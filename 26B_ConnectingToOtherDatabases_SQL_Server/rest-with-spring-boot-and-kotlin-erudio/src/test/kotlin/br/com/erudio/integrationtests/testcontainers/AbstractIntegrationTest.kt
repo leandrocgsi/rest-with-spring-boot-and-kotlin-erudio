@@ -4,7 +4,7 @@ import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.core.env.MapPropertySource
 import org.springframework.test.context.ContextConfiguration
-import org.testcontainers.containers.MySQLContainer
+import org.testcontainers.containers.MSSQLServerContainer
 import org.testcontainers.lifecycle.Startables
 import java.util.stream.Stream
 
@@ -25,17 +25,17 @@ open class AbstractIntegrationTest {
 
         companion object {
 
-            private var mysql: MySQLContainer<*> = MySQLContainer("mysql:8.0.28")
+            private var mssql: MSSQLServerContainer<*> = MSSQLServerContainer("mcr.microsoft.com/mssql/server:2017-latest").acceptLicense()
 
             private fun startContainers() {
-                Startables.deepStart(Stream.of(mysql)).join()
+                Startables.deepStart(Stream.of(mssql)).join()
             }
 
             private fun createConnectionConfiguration(): MutableMap<String, Any> {
                 return java.util.Map.of(
-                    "spring.datasource.url", mysql.jdbcUrl,
-                    "spring.datasource.username", mysql.username,
-                    "spring.datasource.password", mysql.password,
+                    "spring.datasource.url", mssql.jdbcUrl,
+                    "spring.datasource.username", mssql.username,
+                    "spring.datasource.password", mssql.password,
                 )
             }
         }
