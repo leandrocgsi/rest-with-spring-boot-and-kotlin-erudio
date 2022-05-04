@@ -59,16 +59,12 @@
 		</dependency>
 
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-mysql</artifactId>
 		</dependency>
 
 		<dependency>
@@ -107,7 +103,7 @@
 
 		<dependency>
 			<groupId>org.testcontainers</groupId>
-			<artifactId>mysql</artifactId>
+			<artifactId>postgresql</artifactId>
 			<version>${testcontainers.version}</version>
 		</dependency>
 		<dependency>
@@ -149,15 +145,14 @@
 				<groupId>org.flywaydb</groupId>
 				<artifactId>flyway-maven-plugin</artifactId>
 				<configuration>
-					<url>jdbc:mysql://localhost:3306/rest_with_spring_boot_erudio?useTimezone=true&amp;serverTimezone=UTC&amp;useSSL=false</url>
-					<user>root</user>
+					<url>jdbc:postgresql://localhost:5432/rest_with_spring_boot_erudio</url>
+					<user>postgres</user>
 					<password>admin123</password>
 				</configuration>
 				<dependencies>
 					<dependency>
-						<groupId>mysql</groupId>
-						<artifactId>mysql-connector-java</artifactId>
-						<version>${mysql.version}</version>
+						<groupId>org.postgresql</groupId>
+						<artifactId>postgresql</artifactId>
 						<exclusions>
 							<exclusion>
 								<artifactId>slf4j-api</artifactId>
