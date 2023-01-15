@@ -17,9 +17,10 @@ fun main(args: Array<String>) {
 
 	/**
 	val encoders: MutableMap<String, PasswordEncoder> = HashMap()
-	encoders["pbkdf2"] = Pbkdf2PasswordEncoder()
+	val pbkdf2Encoder = Pbkdf2PasswordEncoder("", 8, 185000, Pbkdf2PasswordEncoder.SecretKeyFactoryAlgorithm.PBKDF2WithHmacSHA256)
+	encoders["pbkdf2"] = pbkdf2Encoder
 	val passwordEncoder = DelegatingPasswordEncoder("pbkdf2", encoders)
-	passwordEncoder.setDefaultPasswordEncoderForMatches(Pbkdf2PasswordEncoder())
+	passwordEncoder.setDefaultPasswordEncoderForMatches(pbkdf2Encoder)
 
 	val result = passwordEncoder.encode("foo-bar")
 	println("My hash $result")
