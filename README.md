@@ -5,6 +5,8 @@
 
 [![Image](https://raw.githubusercontent.com/leandrocgsi/RestWithSpringBootUdemy/master/Images/rest_kotlin.png?raw=true "REST API's RESTFul do 0 à AWS com Spring Boot, Kotlin e Docker")](https://www.udemy.com/course/restful-apis-do-0-a-aws-com-spring-boot-3-kotlin-e-docker/?couponCode=GTHB_FLASH_SALE2021)
 
+### [See Updated Code on this Branch](https://github.com/leandrocgsi/rest-with-spring-boot-and-kotlin-erudio/tree/kotlin_1.8_spring_boot_3.0.1)
+
 # My Courses
 
 [![Image](https://github.com/leandrocgsi/RestWithSpringBootUdemy/blob/master/Images/docker_do_zero_a_maestria_conteinerizacao_desmistificada.png?raw=true "Docker do Zero à Maestria - Contêinerização Desmistificada")](https://www.udemy.com/course/docker-do-zero-a-maestria-conteinerizacao-desmistificada/?couponCode=GTHB_FLASH_SALE2021)
