@@ -47,4 +47,4 @@
 
 # Prévia Gratuita
 
-[![Prévia Gratuita](https://img.youtube.com/vi/0EipduE1gok/0.jpg)](https://www.youtube.com/watch?v=0EipduE1gok)
+[![Prévia Gratuita](https://raw.githubusercontent.com/leandrocgsi/RestWithSpringBootUdemy/master/Images/cover/kotlin_cover.png)](https://www.youtube.com/watch?v=0EipduE1gok)
