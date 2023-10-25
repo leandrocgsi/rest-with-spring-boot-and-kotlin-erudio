@@ -18,10 +18,10 @@ class ChatGptService {
     private val logger = Logger.getLogger(ChatGptService::class.java.name)
 
     @Value("\${openai.model}")
-    var model: String? = null
+    private lateinit var model: String
 
     @Value("\${openai.api.url}")
-    var apiUrl: String? = null
+    private lateinit var apiUrl: String
 
     @Autowired
     private lateinit var template: RestTemplate
@@ -30,14 +30,14 @@ class ChatGptService {
 
         logger.info("Starting Prompt")
         val messages = arrayListOf(Message("user", prompt))
-        val request = ChatGptRequest(model!!, messages)
+        val request = ChatGptRequest(model, messages)
 
         val jsonString = ObjectMapper().writeValueAsString(request)
 
         logger.info(jsonString)
         logger.info("Processing Prompt")
 
-        val response = template.postForObject(apiUrl!!, request, ChatGptResponse::class.java)
+        val response = template.postForObject(apiUrl, request, ChatGptResponse::class.java)
         return response!!.choices[0].message.content
     }
 }
