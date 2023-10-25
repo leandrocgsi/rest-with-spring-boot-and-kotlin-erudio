@@ -4,6 +4,7 @@ import br.com.erudio.config.OpenAIConfig
 import br.com.erudio.vo.request.ChatGptRequest
 import br.com.erudio.vo.request.Message
 import br.com.erudio.vo.response.ChatGptResponse
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.jdbc.JdbcProperties.Template
@@ -25,16 +26,18 @@ class ChatGptService {
     @Autowired
     private lateinit var template: RestTemplate
 
-    fun chat(prompt: String): Any {
+    fun chat(prompt: String): String {
 
         logger.info("Starting Prompt")
         val messages = arrayListOf(Message("user", prompt))
         val request = ChatGptRequest(model!!, messages)
 
-        val response = template.postForObject(apiUrl!!, request, ChatGptResponse::class.java)
+        val jsonString = ObjectMapper().writeValueAsString(request)
 
+        logger.info(jsonString)
         logger.info("Processing Prompt")
 
-        return response!!
+        val response = template.postForObject(apiUrl!!, request, ChatGptResponse::class.java)
+        return response!!.choices[0].message.content
     }
 }

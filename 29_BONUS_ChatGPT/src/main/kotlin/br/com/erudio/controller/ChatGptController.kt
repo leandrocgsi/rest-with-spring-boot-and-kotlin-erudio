@@ -15,7 +15,7 @@ class ChatGptController {
     private lateinit var service: ChatGptService
 
     @GetMapping("/chat")
-    fun chat(@RequestParam("prompt") prompt: String) : Any {
+    fun chat(@RequestParam("prompt") prompt: String) : String {
         return service.chat(prompt)
     }
 }
