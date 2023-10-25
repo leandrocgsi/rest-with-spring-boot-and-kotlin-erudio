@@ -15,7 +15,7 @@ class OpenAIConfig {
     private val logger = Logger.getLogger(OpenAIConfig::class.java.name)
 
     @Value("\${openai.api.key}")
-    var openaiApiKey: String? = null
+    private lateinit var openaiApiKey: String
 
     @Bean
     fun template(): RestTemplate {
