@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.0-M1</version>
+		<version>3.0.0-M5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.erudio</groupId>
@@ -18,7 +18,7 @@
 		<kotlin.version>1.6.10</kotlin.version>
 		<!--<dozer.version>6.5.2</dozer.version>-->
 		<dozer.version>6.4.1</dozer.version>
-		<springdoc.version>2.0.0-M1</springdoc.version>
+		<springdoc.version>2.0.0-M5</springdoc.version>
 		<testcontainers.version>1.16.3</testcontainers.version>
 		<rest-assured.version>4.5.0</rest-assured.version>
 		<java-jwt.version>3.18.3</java-jwt.version>
@@ -39,6 +39,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.auth0</groupId>
@@ -103,6 +107,17 @@
 			<groupId>io.rest-assured</groupId>
 			<artifactId>rest-assured</artifactId>
 			<version>${rest-assured.version}</version>
+			<scope>test</scope>
+			<exclusions><!-- https://www.baeldung.com/maven-version-collision -->
+				<exclusion>
+					<groupId>org.apache.groovy</groupId>
+					<artifactId>groovy</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.groovy</groupId>
+					<artifactId>groovy-xml</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -117,7 +132,17 @@
 			<optional>true</optional>
 		</dependency>
 	</dependencies>
-
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>3.0.0-M5</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<build>
 		<sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
 		<testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
@@ -145,28 +170,28 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-			<plugin>
-				<groupId>org.flywaydb</groupId>
-				<artifactId>flyway-maven-plugin</artifactId>
-				<configuration>
-					<url>jdbc:mysql://localhost:3306/rest_with_spring_boot_erudio?useTimezone=true&amp;serverTimezone=UTC&amp;useSSL=false</url>
-					<user>root</user>
-					<password>admin123</password>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>mysql</groupId>
-						<artifactId>mysql-connector-java</artifactId>
-						<version>${mysql.version}</version>
-						<exclusions>
-							<exclusion>
-								<artifactId>slf4j-api</artifactId>
-								<groupId>org.slf4j</groupId>
-							</exclusion>
-						</exclusions>
-					</dependency>
-				</dependencies>
-			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.flywaydb</groupId>-->
+<!--				<artifactId>flyway-maven-plugin</artifactId>-->
+<!--				<configuration>-->
+<!--					<url>jdbc:mysql://localhost:3306/rest_with_spring_boot_erudio?useTimezone=true&amp;serverTimezone=UTC&amp;useSSL=false</url>-->
+<!--					<user>root</user>-->
+<!--					<password>admin123</password>-->
+<!--				</configuration>-->
+<!--				<dependencies>-->
+<!--					<dependency>-->
+<!--						<groupId>mysql</groupId>-->
+<!--						<artifactId>mysql-connector-java</artifactId>-->
+<!--						<version>${mysql.version}</version>-->
+<!--						<exclusions>-->
+<!--							<exclusion>-->
+<!--								<artifactId>slf4j-api</artifactId>-->
+<!--								<groupId>org.slf4j</groupId>-->
+<!--							</exclusion>-->
+<!--						</exclusions>-->
+<!--					</dependency>-->
+<!--				</dependencies>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
 	<repositories>
