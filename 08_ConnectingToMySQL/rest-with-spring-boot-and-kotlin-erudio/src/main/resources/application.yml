@@ -5,6 +5,7 @@ spring:
     username: root
     password: admin123
   jpa:
+    open-in-view: false
     hibernate:
       ddl-auto: update
     show-sql: false
