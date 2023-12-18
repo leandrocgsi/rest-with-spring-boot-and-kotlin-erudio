@@ -16,6 +16,7 @@
 	<properties>
 		<java.version>20</java.version>
 		<kotlin.version>1.9.10</kotlin.version>
+		<dozer.version>6.4.1</dozer.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -40,10 +41,10 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.mysql</groupId>
-			<artifactId>mysql-connector-j</artifactId>
-			<scope>runtime</scope>
-		</dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
 
 		<dependency>
 			<groupId>com.github.dozermapper</groupId>
