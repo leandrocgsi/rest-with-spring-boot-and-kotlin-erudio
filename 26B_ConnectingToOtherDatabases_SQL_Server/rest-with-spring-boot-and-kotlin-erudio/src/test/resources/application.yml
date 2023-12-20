@@ -13,6 +13,7 @@ spring:
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
   jpa:
+    open-in-view: false
     hibernate:
       ddl-auto: none
     properties:
