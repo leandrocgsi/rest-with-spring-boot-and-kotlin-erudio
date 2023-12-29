@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.1</version>
+		<version>3.2.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.erudio</groupId>
@@ -14,9 +14,8 @@
 	<name>rest-with-spring-boot-and-kotlin-erudio</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>18</java.version>
-		<kotlin.version>1.8.0</kotlin.version>
-		<!--<dozer.version>6.5.2</dozer.version>-->
+		<java.version>20</java.version>
+		<kotlin.version>1.9.10</kotlin.version>
 		<dozer.version>6.4.1</dozer.version>
 		<springdoc.version>2.0.2</springdoc.version>
 		<testcontainers.version>1.16.3</testcontainers.version>
@@ -49,12 +48,13 @@
 		</dependency>
 		<dependency>
 			<groupId>org.jetbrains.kotlin</groupId>
-			<artifactId>kotlin-stdlib-jdk8</artifactId>
+			<artifactId>kotlin-stdlib</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.flywaydb</groupId>
@@ -70,6 +70,12 @@
 			<artifactId>dozer-core</artifactId>
 			<version>${dozer.version}</version>
 		</dependency>
+
+		<!--<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>3.0.0</version>
+		</dependency>-->
 		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-xml</artifactId>
